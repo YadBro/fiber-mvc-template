@@ -4,6 +4,7 @@ import (
 	"embed"
 	"net/http"
 
+	"github.com/YadBro/fiber-mvc-template/app/database"
 	"github.com/YadBro/fiber-mvc-template/pkg/env"
 	"github.com/YadBro/fiber-mvc-template/pkg/router"
 	"github.com/gofiber/fiber/v2"
@@ -15,6 +16,7 @@ import (
 
 func NewApplication(viewsPath embed.FS, envScope env.Environment) *fiber.App {
 	env.SetupEnvFile(envScope)
+	database.ConnectDB()
 
 	engine := django.NewPathForwardingFileSystem(http.FS(viewsPath), "/views", ".django")
 	app := fiber.New(fiber.Config{
