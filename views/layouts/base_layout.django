@@ -1,0 +1,3 @@
+{% include "components/header/base_header.django" %}
+{{embed}}
+{% include "components/footer/base_footer.django" %}
